@@ -291,16 +291,34 @@ ReactDOM.render(
  * 
  * 偏业务，可以查看代码查看具体逻辑。不做过多学习。
  * 
- * 注意: list是 immutable类型数组，不支持 list[i] 的形式获取数组元素。它有一个方法叫 toJS()，可以把immutable类型的数组，转换成普通类型数组。
+ * 注意1: 
+ * list是 immutable类型数组，不支持 list[i] 的形式获取数组元素。它有一个方法叫 toJS()，可以把immutable类型的数组，转换成普通类型数组。
  * 应该这样做： const newList = list.toJS()
  * 
- * 注意：加上newList.length判断是为了解决 key值初始为 undefined，根本点在于，list初始为空。
+ * 注意2：
+ * 加上newList.length判断是为了解决 key值初始为 undefined，根本点在于，list初始为空。
  * 
+ * 注意3：
  * merge()方法可以同时修改多个 immutable对象。比连续使用多个set()性能更高。
  * state.merge({
  *  list: action.data,
  *  totalPage: action.totalPage
  * })
+ * 
+ */
+//#endregion
+
+//#region 【实现旋转动画 功能】
+/** 学习react，理解2个重点。
+ * 重点1： react是面向数据编程，所以难点是reducer中的数据应该如何被设计
+ * 重点2： 要向改变react中的数据，要遵循单向数据流的流程。
+ * 首先要派发action给到store,store再转发给reducer,reducer返回一个新的数据给store,store去变更自己的内容。当数据发生变更了，页面也会自动跟着变化了。
+ *
+ */
+//#endregion
+
+//#region 【避免无意义的请求发送，提升组件性能】
+/**
  * 
  */
 //#endregion
