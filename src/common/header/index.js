@@ -27,6 +27,7 @@ class Header extends Component {
         const pageList = []
 
         if(newList.length) {
+            // 加上newList.length判断是为了解决 key值初始为 undefined，根本点在于，list初始为空。
             for(let i = (page-1) * 10; i < page * 10; i++) {
                 pageList.push(
                     <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
