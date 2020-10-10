@@ -322,3 +322,22 @@ ReactDOM.render(
  * 
  */
 //#endregion
+
+/** header部分ending-------------------------------------------- */
+
+//#region 【什么是路由，如何在React中使用路由功能】
+/**
+ * 1、安装路由: npm i react-router-dom
+ * 
+ * 2、在App.js 中
+ * import { BrowserRouter, Route} from 'react-router-dom'
+ * 在render函数中写：
+   <BrowserRouter>
+      <Route path='/' exact render={()=><div>home</div>}></Route>
+      <Route path='/detail' exact render={()=><div>detail</div>}></Route>
+   </BrowserRouter>
+ *
+ * 其中， exact 表示精确匹配路由。
+ * 
+ */
+//#endregion
