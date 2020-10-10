@@ -117,6 +117,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         handleInputFocus(list) {
+            // 避免无意义的发送请求，提升组件性能
             if(list.size === 0) {
                 dispatch(actionCreators.getList())
             }
