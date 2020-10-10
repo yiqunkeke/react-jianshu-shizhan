@@ -98,7 +98,7 @@ ReactDOM.render(
  */
 //#endregion
 
-//#region 【使用redux中的combineReducer整合拆分后的reduceer】
+//#region 【使用redux中的combineReducers整合拆分后的reducer】
 /**  github 搜索 ：redux-devtools-extension  工具
  *   
  * 注意1： 在使用 redux时，所有的数据都是放在 reducer中的，数据处理也是放在 reducer中处理的。
@@ -169,7 +169,7 @@ ReactDOM.render(
  */
 //#endregion
 
-//#region 【使用redux-immutable中的combineReducer统一数据格式】
+//#region 【使用redux-immutable中的combineReducers统一数据格式】
 /**
  * 使用了 immutable之后，在获取immutable对象值时，
  * state.header.get('focused')
