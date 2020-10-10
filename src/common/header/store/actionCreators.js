@@ -2,6 +2,8 @@ import * as constants from './constants'
 import axios from 'axios'
 import { fromJS } from 'immutable'
 
+// 由于changeList不需要被导出，而是直接被getList调用，
+// 建议大家要么放在顶部，要么放在底部
 const changeList = (data) => ({
     type: constants.CHANGE_LIST,
     data: fromJS(data),  // 在传递数据时，把数据也变成 immutable的

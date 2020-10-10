@@ -206,6 +206,91 @@ ReactDOM.render(
 
 //#region 【Ajax获取数据】
 /**
+ * 使用 redux-thunk，统一把异步获取数据，放在action中处理
+ * 1、安装 
+ * npm i redux-thunk
+ * 2、中间件指action与store的中间，实际上是对dispatch方法的升级。它应该在创建store时被使用
+ *   import { createStore, applyMiddleware } from 'redux'
+ *   import reducer from './reducer'
+ *   import thunk from 'redux-thunk'
+ *   const store = createStore(reducer, applyMiddleware(thunk))
+ *   export default store
+ * 3、在组件中派发Action
+ *   dispatch(actionCreator.getList())
+ * 4、在actionCreator中创建getList()方法
+ *    export const getList = () => {
+ *     return (dispatch) => {
+ *         // 在此处派发异步请求
+ *     }
+ *    }
+ * 5、借助axios：安装 npm i axios
+ *    import axios from 'axios'
+ *    在4步中写
+ *    axios.get('/api/headerList.json')
+ *    .then((res)=>{
+ *      console.log(res)
+ *    })
+ *    .catch((err)=>{
+ *      console.log(err)
+ *    })
+ * 6、假数据
+ *    在public文件目录
+ *    创建 api/headerList.json
+ * 
+ *  原理： create-react-app 底层也是node服务器，当你访问 /api/headerList.json时，会先访问工程中的路由，如果找不到，
+ *         则会去 public目录下找 /api/headerList.json，如果能找到就会拿出来并输出。
+ *  通过这个特性，我们可以在这个public目录下写一些假数据。
+ *  在开发时，一般会在public中写假数据，上线前把public目录下的api目录删除，在public目录下如果找不到文件后，就会去请求后端接口。
+ * 
+ * 7、成功拿到数据后，要把拿到的数据替换store中的list
+ *  套路： action给到store,再给到reducer
+ * 
+ * 8、注意点：
+ * 在 reducer中，
+ * 当使用了immutable.js中的fromJS把state变成immutable对象后，则state中的list数组也将变成一个immutable数组。 
+ * 所以defaultState中的list实际上是一个immutable的数组。
+ * 所以，当你在使用 return state.set('list', action.data) 语法来改变 list时，action.data 实际上是一个普通数组。这样的话，数据类型就变了，肯定会出错。
+ * 所以，需要把action.data变成immutable类型。
+ * 可以在actionCreator中传递action.data时，把action.data使用 immutable.js中的 fromJS(action.data), 把action.data变成immutable类型。
+ *  
+ * 9、在组件中展示list数据
+ *   this.props.list.map()
+ * 
+ * 回顾：
+ * 重点1：
+ * 把异步拆分到action中，就要求actionCreator不仅可以返回对象，而需要返回一个函数。
+ * 如果你想actionCreator返回的结果能够是一个函数，必须使用 redux-thunk 中间件。
+ * 重点2：
+ * reducer中的 list，由于最外层包裹了一个 fromJS()，它把内部的list，从一个普通的数组变成一个immutable类型的数组。
+ * 如果你想把接口返回的数据直接 return state.set('list', action.data)就会把list重新变成一个普通数组，这样不行。
+ * 需要在actionCreator中传递action.data之前，把aciton.data也转换成immutable数组类型。
+ * 上面2点，是使用immutable.js时，经常犯的错误。一定要注意。
+ * 重点3：
+ * 在组件中通过map()方法将数据循环展示到界面上。
+ */
+//#endregion
+
+//#region 【代码优化微调】
+/**
+ * 1、在actionCreator中：
+ * 由于changeList不需要被导出，而是直接被getList调用，建议大家要么放在顶部，要么放在底部
+ * 2、在组件中，到处要用到 this.props.xxx
+ * 可以使用解构赋值语法
+ * const {focused, list, handleInputFocus, handleInputBlur } = this.props
+ * 然后直接使用 focused变量即可。
+ * 3、在reducer中，大量使用了if语句，
+ * 使用 switch语句进行替换。更加简洁。
+ * 
+ */
+//#endregion
+
+//#region 【换一批 功能实现】
+/** 在 reducer中，增加两个变量
+ * page: 1,
+ * totalPage: 1
+ * 
+ * 偏业务，可以查看代码查看具体逻辑。不做过多学习。
+ * 
  * 
  */
 //#endregion
