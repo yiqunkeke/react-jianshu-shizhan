@@ -49,6 +49,8 @@ class Header extends Component {
                     </SearchInfoList>
                 </SearchInfo>
             )
+        } else {
+            return null
         }
     }
 
