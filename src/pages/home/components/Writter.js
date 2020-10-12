@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import {WritterWrapper,WritterTitle,WritterSwitch, WritterItem,WriiterText} from '../style'
+import {WritterWrapper,WritterTitle,WritterSwitch, WritterItem, WritterFocus, WriiterText, WritterAll} from '../style'
+import {connect} from 'react-redux'
 
 class Writter extends Component {
     render() {
+        const { list } = this.props
         return (
             <WritterWrapper>
                 <WritterTitle>
@@ -12,17 +14,28 @@ class Writter extends Component {
                         换一批
                     </WritterSwitch>
                 </WritterTitle>
-                <WritterItem>
-                    <img alt="img" className="pic" src="https://upload.jianshu.io/users/upload_avatars/5796592/73837104-47e5-4fe9-a5be-054bd50b06f7.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp"/>
-                    <a href="#" className="focuson">+ 关注</a>
-                    <WriiterText>
-                        <h3 className="title">澜夜师兄</h3>
-                        <p className="desc">写了193.8k字 · 2k喜欢</p>
-                    </WriiterText>
-                </WritterItem>
+                {
+                    list.map(item => (
+                        <WritterItem key={item.get('id')}>
+                            <img alt="img" className="pic" src={item.get('imgUrl')}/>
+                            <WritterFocus>+ 关注</WritterFocus>
+                            <WriiterText>
+                                <h3 className="title">{item.get('title')}</h3>
+                                <p className="desc">写了{item.get('words')}字 · {item.get('fav')}喜欢</p>
+                            </WriiterText>
+                        </WritterItem>
+                    ))
+                }
+                <WritterAll>查看全部 ></WritterAll>
             </WritterWrapper>
         )
     }
 }
 
-export default Writter
+const mapState = (state) => {
+    return {
+        list: state.getIn(['home', 'writterList'])
+    }
+}
+
+export default connect(mapState)(Writter)

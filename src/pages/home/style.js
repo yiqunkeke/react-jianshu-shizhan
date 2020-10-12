@@ -115,14 +115,15 @@ export const WritterItem = styled.div`
         border:1px solid #ddd;
         margin-right: 10px;
     }
-    .focuson {
-        display: block;
-        float: right;
-        color: #42c02e;
-        font-size: 13px;
-        margin-top: 10px;
-        text-decoration: none;
-    }
+`
+export const WritterFocus = styled.span`
+    display: block;
+    cursor: pointer;
+    float: right;
+    color: #42c02e;
+    font-size: 13px;
+    margin-top: 10px;
+    text-decoration: none;
 `
 
 export const WriiterText = styled.div`
@@ -135,4 +136,15 @@ export const WriiterText = styled.div`
         margin-top: 8px;
         color: #969696;
     }
+`
+export const WritterAll = styled.button`
+    margin-top:20px;
+    outline: none;
+    color: #787878;
+    font-size: 13px;
+    width: 100%;
+    border: 1px solid #dcdcdc;
+    padding: 7px 7px 7px 12px;
+    border-radius: 4px;
+    background-color: #f7f7f7;
 `

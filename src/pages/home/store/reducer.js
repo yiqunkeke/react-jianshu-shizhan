@@ -44,6 +44,43 @@ const defaultState = fromJS({
            id: '4',
            imgUrl: 'https://cdn2.jianshu.io/assets/web/banner-s-6-c4d6335bfd688f2ca1115b42b04c28a7.png'
        }
+   ],
+   writterList: [
+       {
+           id: 1,
+           imgUrl: 'https://upload.jianshu.io/users/upload_avatars/9988193/fc26c109-1ae6-4327-a298-2def343e9cd8.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp',
+           title: '澜夜师兄',
+           words: '1126.1k',
+           fav: '4.8k'
+       },
+       {
+           id: 2,
+           imgUrl: 'https://upload.jianshu.io/users/upload_avatars/301940/189d69dd-af7c-4290-9e2c-89e98acf3603.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp',
+           title: '卢璐说',
+           words: '1126.1k',
+           fav: '4.8k'
+       },
+       {
+           id: 3,
+           imgUrl: 'https://upload.jianshu.io/users/upload_avatars/3136195/484e32c3504a.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp',
+           title: '梅拾璎',
+           words: '1126.1k',
+           fav: '4.8k'
+       },
+       {
+           id: 4,
+           imgUrl: 'https://upload.jianshu.io/users/upload_avatars/14715425/e0668349-8c75-43db-8a9d-c388e5f00d0d.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp',
+           title: '简书钻首席小管家',
+           words: '1126.1k',
+           fav: '4.8k'
+       },
+       {
+           id: 5,
+           imgUrl: 'https://upload.jianshu.io/users/upload_avatars/3343569/6940ee65-036f-4b7a-9935-5915d9b67d14.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp',
+           title: '吴晓布',
+           words: '1126.1k',
+           fav: '25k'
+       }
    ]
 })
 
