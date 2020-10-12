@@ -1,9 +1,11 @@
 // import { combineReducers } from 'redux'
 import { combineReducers } from 'redux-immutable' // 使用 redux-immutable的 combineReducers 生成的数据内容是 immutable的。
 import { reducer as headerReducer } from '../common/header/store'  // as 是ES6语法
+import { reducer as homeReducer } from '../pages/home/store'
 
 const reducer = combineReducers({
-    header: headerReducer
+    header: headerReducer,
+    home: homeReducer
 })
 
 export default reducer

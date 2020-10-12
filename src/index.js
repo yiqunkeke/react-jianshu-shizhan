@@ -339,5 +339,13 @@ ReactDOM.render(
  *
  * 其中， exact 表示精确匹配路由。
  * 
+ * BrowserRouter代表路由， Route代表路由规则
  */
 //#endregion
+
+//#region 【首页组件的拆分】
+/**
+ * 
+ */
+//#endregion
+
