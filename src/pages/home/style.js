@@ -16,7 +16,7 @@ export const HomeLeft = styled.div`
     }
 `
 export const HomeRight = styled.div`
-    width: 240px;
+    width: 280px;
     float:right;
 `
 
@@ -81,7 +81,7 @@ export const RecommendWrapper = styled.div`
     padding-top:20px;
     margin-bottom: 30px;
     .pic {
-        width: 240px;
+        width: 280px;
         height: auto;
         margin-top: 10px;
         display: block;
@@ -100,8 +100,12 @@ export const WritterSwitch = styled.p`
     float: right;
     cursor: pointer;
     .iconfont {
+        display: block; //只有block才能进行transform
+        float: left;
         font-size: 13px;
         margin-right: 3px;
+        transition: all .3s ease-in;
+        transform-origin: center center;
     }
 `
 export const WritterItem = styled.div`
