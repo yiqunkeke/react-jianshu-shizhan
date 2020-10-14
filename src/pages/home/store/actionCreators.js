@@ -1,5 +1,6 @@
 import axios from 'axios'
 import * as constants from './constants'
+import {fromJS} from 'immutable'
 
 export const changePage = (page) => ({
     type: constants.CHANGE_PAGE,
@@ -14,6 +15,11 @@ const changeHomeData = (result) => ({
     writterList: result.writterList
 })
 
+const addHomeList = (list) => ({
+    type: constants.ADD_ARTICLE_LIST,
+    list: fromJS(list)
+})
+
 export const getHomeInfo = () => {
     return (dispatch) => {
         axios.get('/api/home.json')
@@ -21,8 +27,16 @@ export const getHomeInfo = () => {
                 const result = res.data.data
                 dispatch(changeHomeData(result))
             })
-            .catch((err) => {
-                console.log(err)
+    }
+}
+
+export const getMoreList = () => {
+    return (dispatch) => {
+        axios.get('/api/homeList.json')
+            .then((res)=>{
+                const result = res.data.data
+                console.log(result);
+                dispatch(addHomeList(result))
             })
     }
 }
