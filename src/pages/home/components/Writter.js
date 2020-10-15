@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import {WritterWrapper,WritterTitle,WritterSwitch, WritterItem, WritterFocus, WriiterText, WritterAll} from '../style'
 import {connect} from 'react-redux'
 import { actionCreators } from '../store'
 
-class Writter extends Component {
+class Writter extends PureComponent {
     render() {
         const { list, page, totalPage, handleChangePage } = this.props
         const newList = list.toJS()

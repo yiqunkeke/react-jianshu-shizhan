@@ -343,9 +343,46 @@ ReactDOM.render(
  */
 //#endregion
 
-//#region 【首页组件的拆分】
+//#region 【首页组件的拆分】【PureComponent vs Component】
 /**
- * 
+ *  import {PureComponent} from 'react'
+    由于connect与store进行了连接，则store中任何数据的改变都会重新执行render函数。--影响性能
+    避免虚拟dom的比对，提高组件性能
+    shouldComponentUpdate() {
+    }
+    使用 react中的 PureComponent，其底层内部自己实现了一个shouldComponentUpdate。
+    这样无需我们手写shouldComponentUpdate做性能优化了。
+    注意：这里能够使用PureComponent，是因为在这个项目中，使用了第三方库immutable.js去管理数据。immutable.js与PureComponent结合使用没有任何问题。
+    但是，如果没有使用immutable.js，单独使用PureComponent时，有时会踩坑。
+    建议：如果使用PureComponent，建议使用immutable.js来管理数据。不然的话，建议使用Component，虽然性能低一些，但是可以自己写shouldComponentUpdate做性能优化。
  */
+//#endregion
+
+//#region 【页面跳转 Link】
+/** import { Link } from 'react-router-dom'
+ *  单页应用：意思是整个应用只会加载一个html文档。
+ *  如果在页面跳转时，不使用 react-router-dom 提供的 Link进行跳转，而使用 <a>标签跳转，则会多请求一个文档。失去了单页应用的特性。
+ *  <Link to="/detail">详情页</Link>
+ */
+//#endregion
+
+//#region 【路由参数传递】
+// 【1】静态路由
+// <Link to="/detail" key={index}>
+
+// 【2】动态路由传参：
+    // a.在此处传递参数 
+    // b.在App.js中<Route path='/detail/:id' exact component={Detail}></Route> 
+    // c.在detail/index.js组件中接收参数：【this.props.match.params.id】
+// <Link to={"/detail/" + item.get('id')} key={index}>
+
+// 【3】另一种方式传参：
+    // a. 在此处通过 ?id= 形式传递参数
+    // b. 在App.js中 <Route path='/detail' exact component={Detail}></Route>
+    // c. 在detail/index.js组件中接收参数： 【this.props.location.search 可以获取到 '?id=1' 】
+    // 这种 ?id= 方式获取id需要程序员手动去解析获取id。有点麻烦
+    // 所以建议直接使用动态路由的方式【2】传递参数 
+// <Link to={"/detail?id=" + item.get('id')} key={index}>
+
 //#endregion
 
